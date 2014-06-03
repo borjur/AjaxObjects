@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<title>Form</title>
+<link href="Form.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="Validator.js"></script>
+<script language="javascript">
+function init()
+{
+	document.getElementById("icForm").onsubmit = validate;
+	document.getElementById("icForm").FirstName.focus();
+}
+
+function validate(e)
+{
+	if (!e) e = window.event;
+	var target = e.target || e.srcElement;
+	var validator = new Validator(target);
+	validator.checkLength("FirstName",1,100,"Must include first name.");
+	//Add a line to check that the email is valid.
+	validator.checkEmail("Email","Must include valid email.");
+	return validator.submitForm();
+}
+
+window.onload = init;
+</script>
+</head>
+<body>
+<form id="icForm">
+<div class="FormRow">
+<label for="FirstName">First Name:</label>
+<input name="FirstName" size="20">
+</div>
+<div class="FormRow">
+<label for="Email">Email:</label>
+<input name="Email" size="30">
+</div>
+<div class="FormRow" style="margin-left:140px">
+<input type="submit" value="Submit">
+</div>
+</form>
+</body>
+</html>
